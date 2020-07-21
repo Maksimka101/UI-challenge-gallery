@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_challanges/books_store/books_store.dart';
+
+import 'books_store/books_store.dart';
 
 class ChallengeGallery extends StatelessWidget {
   @override
