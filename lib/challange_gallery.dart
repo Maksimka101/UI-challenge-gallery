@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_challenge_gallery/bank_card_info.dart/bank_card_info.dart';
 
 import 'books_store/books_store.dart';
 
@@ -24,8 +25,16 @@ class _ChallengeGalleryBody extends StatelessWidget {
       children: [
         ListTile(
           title: Text('Books store'),
+          subtitle: Text('Two screens with middle interactions'),
           onTap: () => _openChallenge(context, BooksStore()),
-        )
+        ),
+        Divider(),
+        ListTile(
+          title: Text('Bank card info'),
+          subtitle: Text('Two screens with low interactions'),
+          onTap: () => _openChallenge(context, BankCardInfo()),
+        ),
+        Divider(),
       ],
     );
   }

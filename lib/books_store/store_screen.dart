@@ -10,7 +10,7 @@ class MainStoreScreen extends StatelessWidget {
   final List<Book> popular;
   final List<Book> reading;
   // final _padding = const EdgeInsets.symmetric(horizontal: 25, vertical: 15);
-  final _padding = const EdgeInsets.only(left: 15, right: 10);
+  final _padding = const EdgeInsets.only(left: 15, right: 10, top: 0, bottom: 0);
 
   MainStoreScreen({
     Key key,
@@ -22,8 +22,11 @@ class MainStoreScreen extends StatelessWidget {
   void _bookTapped(Book book, BuildContext context) => Navigator.push(
         context,
         CupertinoPageRoute(
-          builder: (_) => BookInfoScreen(
-            book: book,
+          builder: (_) => Theme(
+            data: Theme.of(context),
+            child: BookInfoScreen(
+              book: book,
+            ),
           ),
         ),
       );
@@ -109,6 +112,7 @@ class MainStoreScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Spacer(),
+            SizedBox(height: 5),
             StoreAppBar(
               padding: _padding,
             ),
@@ -133,7 +137,7 @@ class MainStoreScreen extends StatelessWidget {
             ),
             Spacer(),
             _buildReading(),
-            SizedBox(height: 2),
+            SizedBox(height: 5),
             Spacer(),
           ],
         ),

@@ -256,7 +256,7 @@ class ReadingBook extends StatelessWidget {
         onTap: () => onTap(book, context),
         child: BookImage(
           imageUrl: book.imageUrl,
-          height: MediaQuery.of(context).size.height / 5,
+          height: MediaQuery.of(context).size.height / 5.1,
         ),
       ),
     );
@@ -274,7 +274,7 @@ class FavoriteBookCart extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(
         bottom: 5,
-        top: 3,
+        top: 2,
         right: 7,
       ),
       child: CustomCard(
@@ -283,7 +283,7 @@ class FavoriteBookCart extends StatelessWidget {
         child: SizedBox(
           width: _query.size.width / 1.5,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
             child: InkWell(
               onTap: () => onTap(book, context),
               child: Row(

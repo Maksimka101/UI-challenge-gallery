@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'book_widgets.dart';
@@ -19,9 +20,9 @@ class BookInfoScreen extends StatelessWidget {
           padding: padding,
           child: ListView(
             children: [
-              SizedBox(height: 15),
+              SizedBox(height: 10),
               BookInfoAppBar(),
-              SizedBox(height: 15),
+              SizedBox(height: 10),
               BookInfoHeader(book: book),
               SizedBox(height: 10),
               Divider(height: 40),
@@ -38,9 +39,16 @@ class BookInfoScreen extends StatelessWidget {
 class BookInfoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //todo
+    print(Theme.of(context).buttonColor);
     return Row(
       children: [
-        BackButton(),
+        // BackButton(),
+        IconButton(
+          padding: EdgeInsets.all(0),
+          icon: Icon(Icons.arrow_back_ios),
+          onPressed: () => Navigator.maybePop(context),
+        ),
         Spacer(),
         InkWell(
           borderRadius: BorderRadius.circular(16),
