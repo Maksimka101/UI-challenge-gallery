@@ -112,7 +112,7 @@ class MainStoreScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Spacer(),
-            SizedBox(height: 5),
+            SizedBox(height: 4),
             StoreAppBar(
               padding: _padding,
             ),
@@ -137,7 +137,7 @@ class MainStoreScreen extends StatelessWidget {
             ),
             Spacer(),
             _buildReading(),
-            SizedBox(height: 5),
+            SizedBox(height: 4),
             Spacer(),
           ],
         ),

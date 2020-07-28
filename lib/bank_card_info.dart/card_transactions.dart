@@ -1,8 +1,10 @@
 import 'package:animations/animations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_challenge_gallery/bank_card_info.dart/data.dart';
 import 'package:ui_challenge_gallery/bank_card_info.dart/transaction_widgets.dart';
 
+import 'all_transactions_screen.dart';
 import 'card_widgets.dart';
 
 class CardsTransactions extends StatelessWidget {
@@ -35,6 +37,49 @@ class _CardsTransactionsBody extends StatefulWidget {
 
 class __CardsTransactionsBodyState extends State<_CardsTransactionsBody> {
   int _currentPage = 0;
+
+  void _viewAllTapped(BuildContext context) {
+    var page = _currentPage;
+    if (page == widget.cards.length) {
+      page--;
+    }
+
+    Navigator.push(
+      context,
+      CupertinoPageRoute(
+        builder: (_) => Theme(
+          data: Theme.of(context),
+          child: AllTransactionsScreen(
+            transactions: widget.cards[page].transactions,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTransactionsTitle() => Column(
+        children: [
+          SizedBox(height: 10),
+          Row(
+            children: [
+              Text(
+                'Transactions',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Spacer(),
+              TextButton(
+                onPressed: () => _viewAllTapped(context),
+                child: Text(
+                  'See All',
+                  style: TextStyle(color: Theme.of(context).accentColor),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 8),
+        ],
+      );
+
   @override
   Widget build(BuildContext context) {
     final cardForTransactions =
@@ -45,6 +90,10 @@ class __CardsTransactionsBodyState extends State<_CardsTransactionsBody> {
           cards: widget.cards,
           currentPage: _currentPage,
           onPageChanged: (newPage) => setState(() => _currentPage = newPage),
+        ),
+        FractionallySizedBox(
+          widthFactor: 0.91,
+          child: _buildTransactionsTitle(),
         ),
         Flexible(
           child: FractionallySizedBox(
@@ -57,9 +106,11 @@ class __CardsTransactionsBodyState extends State<_CardsTransactionsBody> {
                   secondaryAnimation: secondaryAnimation,
                 );
               },
-              child: AllTransactions(
+              child: SingleChildScrollView(
                 key: Key(cardForTransactions.cardNumber.toString()),
-                card: cardForTransactions,
+                child: AllTransactions(
+                  transactions: cardForTransactions.transactions,
+                ),
               ),
             ),
           ),

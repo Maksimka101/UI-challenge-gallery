@@ -9,6 +9,7 @@ class BankCardInfo extends StatelessWidget {
     return Theme(
       data: ThemeData(
         accentColor: Colors.indigo,
+        canvasColor: Colors.grey[50],
       ),
       child: CardsTransactions(
         cards: cards,

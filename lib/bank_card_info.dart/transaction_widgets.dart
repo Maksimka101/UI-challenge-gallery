@@ -1,57 +1,34 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_challenge_gallery/bank_card_info.dart/data.dart';
+import 'package:ui_challenge_gallery/utils/ui_utils.dart';
 
 class AllTransactions extends StatelessWidget {
-  final BankCard card;
+  final List<Transaction> transactions;
 
-  const AllTransactions({Key key, @required this.card}) : super(key: key);
-  void _viewAllTapped() {
-    //todo
-  }
+  const AllTransactions({Key key, @required this.transactions}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     List<Transaction> transactionForPreview;
-    if (card.transactions.length > 10) {
-      transactionForPreview = card.transactions.sublist(0, 10);
+    if (transactions.length > 10) {
+      transactionForPreview = transactions.sublist(0, 10);
     } else {
-      transactionForPreview = card.transactions;
+      transactionForPreview = transactions;
     }
     return Column(
-      children: [
-        SizedBox(height: 10),
-        Row(
-          children: [
-            Text(
-              'Transactions',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+      mainAxisSize: MainAxisSize.min,
+      children: transactionForPreview
+          .map<Widget>(
+            (transaction) => Padding(
+              padding: const EdgeInsets.only(bottom: 13),
+              child: TransactionInfoCard(
+                transaction: transaction,
+              ),
             ),
-            Spacer(),
-            TextButton(
-              onPressed: _viewAllTapped,
-              child: Text('See All'),
-            ),
-          ],
-        ),
-        SizedBox(height: 8),
-        Flexible(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: transactionForPreview
-                  .map<Widget>(
-                    (transaction) => Padding(
-                      padding: const EdgeInsets.only(bottom: 13),
-                      child: TransactionInfoCard(
-                        transaction: transaction,
-                      ),
-                    ),
-                  )
-                  .toList(),
-            ),
-          ),
-        )
-      ],
+          )
+          .toList(),
     );
   }
 }
@@ -63,24 +40,13 @@ class TransactionInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 6),
-      decoration: BoxDecoration(
-          color: theme.cardColor,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 6,
-              offset: Offset(0, 3),
-            ),
-          ]),
+    return CustomCard(
       child: ListTile(
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(10),
           child: AspectRatio(
             aspectRatio: 1,
-                      child: CachedNetworkImage(
+            child: CachedNetworkImage(
               imageUrl: transaction.logoUrl,
               fit: BoxFit.cover,
             ),

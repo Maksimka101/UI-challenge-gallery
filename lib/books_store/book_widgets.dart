@@ -3,38 +3,9 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_challenge_gallery/utils/ui_utils.dart';
 
 import 'data.dart';
-
-class CustomCard extends StatelessWidget {
-  final Widget child;
-  final Offset offset;
-  final double blurRadius;
-
-  const CustomCard({
-    Key key,
-    @required this.child,
-    this.offset,
-    this.blurRadius,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: blurRadius ?? 4,
-            offset: offset ?? Offset(0, 3),
-          ),
-        ],
-        color: Theme.of(context).canvasColor,
-      ),
-      child: child,
-    );
-  }
-}
 
 class ShelfTitle extends StatelessWidget {
   final String title;
@@ -56,7 +27,7 @@ class ShelfTitle extends StatelessWidget {
           ),
           Spacer(),
           TextButton(
-            onPressed: () {},
+            onPressed: () => onNoFeature(context),
             child: Text(
               buttonText,
               style: TextStyle(color: Theme.of(context).accentColor),
@@ -163,7 +134,7 @@ class PopularBook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
-    var imageHeight = mediaQuery.size.height / 4.1;
+    var imageHeight = mediaQuery.size.height / 4.13;
     return InkWell(
       onTap: () => onTap(book, context),
       child: IntrinsicWidth(
@@ -278,6 +249,7 @@ class FavoriteBookCart extends StatelessWidget {
         right: 7,
       ),
       child: CustomCard(
+        margin: EdgeInsets.all(0),
         blurRadius: 4,
         offset: Offset(0, 2),
         child: SizedBox(

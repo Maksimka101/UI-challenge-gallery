@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_challenge_gallery/bank_card_info.dart/data.dart';
+import 'package:ui_challenge_gallery/utils/ui_utils.dart';
 
 class CardsPreview extends StatelessWidget {
   final int currentPage;
@@ -14,7 +15,7 @@ class CardsPreview extends StatelessWidget {
     @required this.onPageChanged,
   }) : super(key: key);
 
-  Widget _addCardWidget() => AspectRatio(
+  Widget _addCardWidget(BuildContext context) => AspectRatio(
         aspectRatio: 1.75,
         child: Container(
           decoration: BoxDecoration(
@@ -28,7 +29,7 @@ class CardsPreview extends StatelessWidget {
                 ),
               ]),
           child: InkWell(
-            onTap: () {},
+            onTap: () => onNoFeature(context),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -70,7 +71,7 @@ class CardsPreview extends StatelessWidget {
                   .toList(),
               Padding(
                 padding: EdgeInsets.all(10),
-                child: _addCardWidget(),
+                child: _addCardWidget(context),
               ),
             ],
           ),

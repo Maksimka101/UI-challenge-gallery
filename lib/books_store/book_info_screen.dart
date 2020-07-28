@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ui_challenge_gallery/utils/ui_utils.dart';
 
 import 'book_widgets.dart';
 import 'data.dart';
@@ -39,11 +40,8 @@ class BookInfoScreen extends StatelessWidget {
 class BookInfoAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //todo
-    print(Theme.of(context).buttonColor);
     return Row(
       children: [
-        // BackButton(),
         IconButton(
           padding: EdgeInsets.all(0),
           icon: Icon(Icons.arrow_back_ios),
@@ -52,7 +50,7 @@ class BookInfoAppBar extends StatelessWidget {
         Spacer(),
         InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () {},
+          onTap: () => onNoFeature(context),
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             decoration: BoxDecoration(
@@ -166,7 +164,7 @@ class BookDescription extends StatelessWidget {
               ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => onNoFeature(context),
           child: Text(
             'See More',
             style: TextStyle(color: Theme.of(context).accentColor),

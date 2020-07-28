@@ -7,7 +7,7 @@ final cards = [
     cvv: 456,
     expiresDate: DateTime(2020, 12),
     holderName: 'James Dennis',
-    transactions: transactions.toList()..removeLast(),
+    transactions: allTransactions.toList()..removeLast(),
     backgroundImageUrl:
         'https://besthqwallpapers.com/img/original/132329/blue-abstract-waves-4k-minimal-blue-wavy-background-material-design.jpg',
   ),
@@ -16,12 +16,12 @@ final cards = [
     cvv: 295,
     expiresDate: DateTime(2021, 7),
     holderName: 'Paul Jeckson',
-    transactions: transactions.toList()..removeAt(1),
+    transactions: allTransactions.toList()..removeAt(1),
     backgroundImageUrl: 'https://wallpaperaccess.com/full/1558939.jpg',
   ),
 ];
 
-final transactions = [
+final allTransactions = [
   Transaction(
     name: 'Uber Premier',
     type: 'Transport',
